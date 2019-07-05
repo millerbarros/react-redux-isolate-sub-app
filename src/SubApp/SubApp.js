@@ -1,24 +1,30 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
-import store from './store'
-
 import "./SubApp.css";
 
+let subapp_index = 0
+
 class SubApp extends Component {
-  _onClick = () => store.dispatch({ type: 'INCREMENT' })
+  constructor() {
+    super()
+    this.index = subapp_index++
+  }
 
   render() {
-    const { count } = this.props
+    const { count, increment } = this.props
 
-    console.log('SubApp.count:', count);
+    console.log(`SubApp[${this.index}].count:`, count);
 
     return (
-      <div className="sub-app" onClick={this._onClick}>
+      <div className="sub-app" onClick={increment}>
         {count}
       </div>
     )
   }
 }
 
-export default connect((state) => ({ count: state }))(SubApp);
+const mapStateToProps = (state) => ({ count: state })
+const mapActionsToProps = (dispatch) => ({ increment: () => dispatch({ type: 'INCREMENT' }) })
+
+export default connect(mapStateToProps, mapActionsToProps)(SubApp);

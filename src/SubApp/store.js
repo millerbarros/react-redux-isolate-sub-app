@@ -1,4 +1,4 @@
-import { createStore } from "redux"
+// import { createStore } from "redux"
 
 function counter(state = 0, action) {
     switch (action.type) {
@@ -11,8 +11,8 @@ function counter(state = 0, action) {
     }
 }
 
-const store = createStore(counter);
+// const store = createStore(counter);
 
-store.subscribe(() => console.log('SubApp', store.getState()))
+// store.subscribe(() => console.log('SubApp', store.getState()))
 
-export default store;
+export default counter;

@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-
+import { createStore } from 'redux';
 import { Provider } from 'react-redux'
-import store from './store'
+
+import counter from './store'
 
 import App from './SubApp'
 
 export default class SubApp extends Component {
   constructor(props) {
     super(props)
-    this.store = store
-    // this.store.subscribe(() => this.setState({ ...this.state }))
+    this.store = createStore(counter);
+    this.store.subscribe(() => console.log('SubApp', this.store.getState()))
   }
 
   render() {
